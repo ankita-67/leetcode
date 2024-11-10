@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Map;
 
 public class MyHashmap {
 
@@ -6,75 +7,76 @@ public class MyHashmap {
         MyHashmap hashMap = new MyHashmap();
         hashMap.put(1, 1);
         hashMap.put(2, 2);
-        System.out.println(hashMap.get(1));
-        System.out.println(hashMap.get(3));
+       System.out.println(hashMap.get(1));
+       System.out.println(hashMap.get(3));
         hashMap.put(2, 1);
         System.out.println(hashMap.get(2));
-        hashMap.remove(2);
+       hashMap.remove(2);
         System.out.println(hashMap.get(2));
     }
-    private static final int numBuckets = 1000;
-    private LinkedList<Entry>[] buckets;
 
-    private static class Entry {
+
+
+
+    private static int numBucket =1000;
+    private LinkedList<Pair>[] buckets;
+
+    static class Pair
+    {
         int key;
         int value;
-        Entry next;
+        Pair next;
 
-        Entry(int key, int value) {
-            this.key = key;
-            this.value = value;
+        Pair(int key, int value)
+        {
+            this.key =key;
+            this.value= value;
         }
     }
-
-    public MyHashmap() {
-        buckets = new LinkedList[numBuckets];
-        for (int i = 0; i < numBuckets; i++) {
-            buckets[i] = new LinkedList<>();
-        }
+    MyHashmap(){
+        buckets = new LinkedList[numBucket];
+        for(int i=0;i<numBucket;i++)
+            buckets[i]=new LinkedList<>();
     }
+    private void put(int key, int value) {
+      int index = key % numBucket;
+      LinkedList<Pair> bucket = buckets[index];
+   for( Pair entry :bucket)
+      {
+          if(entry.key == key)
+          {
+              entry.value =value;
+              return;
+          }
+      }
 
-    public void put(int key, int value) {
-        int index = key % numBuckets;
-        LinkedList<Entry> bucket = buckets[index];
 
-        for (Entry entry : bucket) {
-            if (entry.key == key) {
-                entry.value = value;
-                return;
-            }
-        }
-
-        bucket.add(new Entry(key, value));
+      bucket.add(new Pair(key,value));
     }
-
-    public int get(int key) {
-        int index = key % numBuckets;
-        LinkedList<Entry> bucket = buckets[index];
-
-        for (Entry entry : bucket) {
-            if (entry.key == key) {
+    private int get(int key) {
+        int index = key%numBucket;
+        LinkedList<Pair> bucket = buckets[index];
+        for (Pair entry : bucket)
+        {
+            if(entry.key == key )
                 return entry.value;
-            }
         }
-
         return -1;
+
     }
+    private void remove(int i) {
 
-    public void remove(int key) {
-        int index = key % numBuckets;
-        LinkedList<Entry> bucket = buckets[index];
-
-        Entry toRemove = null;
-        for (Entry entry : bucket) {
-            if (entry.key == key) {
-                toRemove = entry;
-                break;
+        int index = i%numBucket;
+        LinkedList<Pair> bucket = buckets[index];
+        Pair p = null;
+        for(Pair entry : bucket)
+        {
+            if (entry.key == i)
+            {
+                p = entry;
             }
         }
-
-        if (toRemove != null) {
-            bucket.remove(toRemove);
-        }
+        if(p!=null)
+            bucket.remove(p);
     }
 }
