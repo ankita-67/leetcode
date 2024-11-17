@@ -1,16 +1,7 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.security.Key;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 // Largest No from given array
-class A {
+class a {
     public static void main(String[] args) {
         String[] arr1 = {"3", "30", "34", "5", "9"};
         System.out.println(
