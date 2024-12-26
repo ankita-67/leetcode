@@ -1,14 +1,3 @@
-class Node {
-    int data;
-    Node left, right;
-
-    Node(int value) {
-        data = value;
-        left = right = null;
-    }
-}
-
-
 public class isValidBst {
         // Function to check if the binary tree
         // is a BST using Morris Traversal
@@ -21,24 +10,23 @@ public class isValidBst {
 
 
                 if (curr.left == null) {
-                    System.out.println("inside first if cureent right "+curr.right.data);
-                    System.out.println("inside first if cureent "+curr.data);
-                    // Process curr node
-                    if (curr.data <= prevValue) {
+                    System.out.println("inside current.data is null"+curr.data+"   "+Integer.MIN_VALUE );
+                    if (curr.data < prevValue) {
 
                         // Not in ascending order
                         return false;
                     }
                     prevValue = curr.data;
-
+                    System.out.println("inside current.left is null"+prevValue);
                     curr = curr.right;
+                    System.out.println("inside current update after null"+curr.data);
 
 
                 } else {
 
 
                     pre = curr.left;
-
+              System.out.println(pre.data);
                     while (pre.right != null && pre.right != curr) {
                         pre = pre.right;
                     }
@@ -47,14 +35,15 @@ public class isValidBst {
 
                         // Create a temporary thread to the curr node
                         pre.right = curr;
-
+                        System.out.println("inside pre is null"+pre.data);
                         curr = curr.left;
 
+                        System.out.println("inside current  is updated to"+curr.data);
                     } else {
-                        System.out.println("inside first if pre ");
+
                         // Remove the temporary thread
                         pre.right = null;
-
+System.out.print("current "+curr.data+" ");
                         // Process the curr node
                         if (curr.data <= prevValue) {
 
@@ -65,7 +54,7 @@ public class isValidBst {
                         curr = curr.right;
                     }
                 }
-                System.out.println("WHILE LOOP ");
+
             }
 
             return true;
@@ -74,17 +63,17 @@ public class isValidBst {
         public static void main(String[] args) {
 
             // Create a sample binary tree
-            //      4
+            //      5
             //    /   \
-            //   2     5
-            //  / \
-            // 1   3
+            //  1     4
+           //        /  \
+            //      3    6
 
-            Node root = new Node(4);
-            root.left = new Node(2);
-            root.right = new Node(5);
-            root.left.left = new Node(1);
-            root.left.right = new Node(3);
+            Node root = new Node(-2147483648);
+//            root.left = new Node(1);
+//            root.right = new Node(4);
+//            root.right.left = new Node(3);
+//            root.right.right = new Node(6);
 
             if (isBST(root)) {
                 System.out.println("True");

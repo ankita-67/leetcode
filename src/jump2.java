@@ -30,13 +30,14 @@ public class jump2 {
 
 
         step--;
-        if(step == 0){
+        if (step == 0) {
             jump++;
             if(i>=maxReach)
                 return -1;
 
             step = maxReach -i;
         }
+
 
     }
         return -1;

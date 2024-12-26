@@ -13,14 +13,18 @@ public class robHouse_2 {
 
     public static int robHouse(int[] num, int left, int right)
     {
-        int inclPrev = 0;
-        int excludePrev =0;
-        for (int i=left; i<=right;i++)
+        int prevNoRob = 0;
+        int prevRob =0;
+
+        for(int i=left; i<right;i++)
         {
-            int incurr = num[i]+excludePrev;
-            excludePrev = Math.max(excludePrev, inclPrev);
-            inclPrev = incurr;
+            int tempprevnoRob = Math.max(prevNoRob, prevRob);
+            prevRob = prevNoRob +num[i];
+            prevNoRob = tempprevnoRob;
+
+
         }
-        return Math.max(excludePrev,inclPrev);
+        return Math.max(prevRob, prevNoRob);
     }
-}
+    }
+

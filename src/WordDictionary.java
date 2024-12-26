@@ -14,13 +14,17 @@ public class WordDictionary {
 
     public static void main(String[] args) {
         WordDictionary wordDictionary = new WordDictionary();
-        wordDictionary.addWord("bad");
-        wordDictionary.addWord("dad");
-        wordDictionary.addWord("mad");
-        System.out.println(wordDictionary.search("pad")); // return False
-        System.out.println(wordDictionary.search("bad")); // return True
-        System.out.println(wordDictionary.search(".ad")); // return True
-        System.out.println(wordDictionary.search("b.."));
+        wordDictionary.addWord("a");
+        wordDictionary.addWord("a");
+
+        //["WordDictionary","addWord","addWord","search","search","search","search","search","search"]
+        //[[],["a"],["a"],["."],["a"],["aa"],["a"],[".a"],["a."]]
+        System.out.println(wordDictionary.search(".")); // return False
+        System.out.println(wordDictionary.search("a")); // return True
+        System.out.println(wordDictionary.search("aa")); // return True
+        System.out.println(wordDictionary.search("a"));
+        System.out.println(wordDictionary.search(".a")); // return True
+        System.out.println(wordDictionary.search("a."));
     }
 
     private void addWord(String word) {
@@ -35,11 +39,11 @@ public class WordDictionary {
             }
 
             node =node.children[ch -'a'];
-            System.out.println("outside if:"+ Arrays.toString(node.children));
+          //  System.out.println("outside if:"+ Arrays.toString(node.children));
         }
 
         node.isEndOfWord =true;
-        System.out.println("outside if:" +node.isEndOfWord);
+        //System.out.println("outside if:" +node.isEndOfWord);
     }
 
     public boolean search(String word) {
@@ -47,7 +51,7 @@ public class WordDictionary {
     }
 
     private boolean searchInNode(String word, TrieNode node) {
-        System.out.println(node.children);
+       // System.out.println(node.children);
         for (int i = 0; i < word.length(); ++i) {
             char c = word.charAt(i);
             if (c == '.') {

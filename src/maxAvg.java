@@ -1,17 +1,19 @@
 import java.util.List;
 import java.util.*;
 
+import static java.lang.Math.floor;
+
 public class maxAvg {
    
 
     public static void main(String[] args) {
-        String input[][] = {{"Bob","87"}, {"Mike", "35"},{"Bob", "52"}, {"Jason","35"}, {"Mike", "55"}, {"Jessica", "99"}};
+        String input[][] = {{"Bob","87"}, {"Mike", "86"},{"Bob", "52"}, {"Mike", "95"}, {"Mike", "79"}, {"Jason","35"}, {"Mike", "55"}, {"Jessica", "-99"}};
         System.out.print(findMaxAverage(input));
     }
 
-    private static int findMaxAverage(String[][] input) {
+    private static float findMaxAverage(String[][] input) {
        HashMap<String, List<Integer>> hm = new HashMap<>();
-       int highavg =0;
+       float highavg  = Integer.MIN_VALUE;
 
        for(int i=0;i<input.length;i++)
        {
@@ -31,7 +33,12 @@ public class maxAvg {
        }
        for(Map.Entry<String, List<Integer>> entry: hm.entrySet())
        {
-           int currentAvg = avg(entry.getValue());
+          // System.out.pr
+           // intln("key: "+entry.getKey()+" value: "+entry.getValue());
+           float currentAvg = avg(entry.getValue());
+           System.out.println("key: "+entry.getKey()+" value: "+entry.getValue()+ " currentavg: "+currentAvg);
+
+
            highavg = Math.max(currentAvg, highavg);
        }
        return highavg;
@@ -42,9 +49,10 @@ int sum =0;
         for(int ans :value)
         {
             sum+=ans;
-        }
 
-        int avg1 = sum/(value.size());
+        }
+        System.out.println("sum: "+sum);
+        int avg1 = (int) floor(sum/(value.size()));
         return avg1;
 
     }

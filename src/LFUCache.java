@@ -68,6 +68,7 @@ public class LFUCache {
         } else {
             if (frequencyMinHeap.size() == capacity) {
                 int k = frequencyMinHeap.poll();
+                System.out.println("cpacity reached"+k);
                 frequencyMap.remove(k);
             }
             Node p = new Node(key, value, 1);
@@ -90,7 +91,7 @@ public class LFUCache {
         System.out.println("-----------------after put 2-----------------------");
         lrucache.get(1);
         System.out.println("-------------------after get 1---------------------");
-        lrucache.put(3,3);
+        lrucache.put(2,3);
         lrucache.get(2);
         lrucache.get(3);
         lrucache.put(4,4);

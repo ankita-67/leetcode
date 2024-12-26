@@ -5,7 +5,13 @@ public class ThreeSum {
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
+        for(int i=0;i<nums.length;i++)
+        {
+            System.out.println("nums[i] "+nums[i]);
+        }
+        System.out.println("===============================");
         for(int i=0;i<nums.length-2 && nums[i]<=0;i++){
+            System.out.println("i: "+i +" nums[i] "+nums[i]);
             if(i!=0 && nums[i]== nums[i-1])
                 continue;
             twoSum(i+1, -nums[i],nums, res);
@@ -38,6 +44,7 @@ public class ThreeSum {
     }
 
     public static void main(String[] args) {
+
         int []nums = {-1,0,1,2,-1,-4};
         List<List<Integer>> p =  threeSum(nums);
         System.out.print(p);
